@@ -6,7 +6,8 @@ defmodule Xmonka.Monster do
       species: "Flavia",
         hitpoints_now: 6,
           equip: false,
-            equip_id: 0
+            equip_id: 0,
+            status: :none
 
   def start_link() do
     Agent.start_link(fn -> %Xmonka.Monster{} end)
@@ -52,7 +53,6 @@ defmodule Xmonka.Monster do
                 IO.puts("Monster defeated!")
                 false -> IO.puts("Damage done!")
                 end
-
            end
 
   alias Xmonka.Monster
