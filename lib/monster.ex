@@ -1,5 +1,6 @@
 defmodule Xmonka.Monster do
   defstruct hand: false,
+  cardid: 0,
    bench: false,
     ingame: false,
      alive: true,
