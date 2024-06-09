@@ -2,7 +2,7 @@
 
 XChangable Monster Kards
 
-WIP project, started around 05/-09
+WIP project, started around 05/06/24
 
 The purpose of this project is to implement an online Trading Cards
 game to learn how to implement a stateful web application using the
