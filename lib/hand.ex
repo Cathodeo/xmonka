@@ -1,11 +1,11 @@
 defmodule Xmonka.Hand do
-    alias Xmonka
+
     def start_link() do
       Agent.start_link(fn -> [] end)
     end
 
     def populate_initial(hand, cardlist) when is_list cardlist do
-      Agent.update(hand, fn state -> cardlist end)
+      Agent.update(hand, fn state -> [cardlist | state] end)
     end
 
     def put_hand(hand, cardid)
@@ -14,7 +14,7 @@ defmodule Xmonka.Hand do
       case handmany <= 7
       do
       true -> Agent.update(hand, fn state -> [cardid | state] end)
-      false -> io.puts("Hand already full!")
+      false -> IO.puts("Hand already full!")
       end
     end
 

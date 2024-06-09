@@ -1,4 +1,6 @@
 defmodule Xmonka.Monster do
+  require Xmonka.Database
+  require Amnesia
   defstruct hand: false,
   cardid: 0,
    bench: false,
@@ -44,6 +46,16 @@ defmodule Xmonka.Monster do
               end
             end
 
+
+          def species_lookup(cardid) do
+
+          end
+
+
+           def init_monster(cardid, isbench) do
+             start_link()
+
+           end
            def do_damage(monster, damage) do
               current_hp = health?(monster)
               Agent.update(monster,
@@ -56,5 +68,5 @@ defmodule Xmonka.Monster do
                 end
            end
 
-  alias Xmonka.Monster
+
 end

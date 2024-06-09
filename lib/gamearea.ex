@@ -1,5 +1,5 @@
 defmodule Xmonka.GameArea do
-  alias Xmonka.Monster
+
   defstruct MonID_side1: 0,
             MonID_side2: 0,
             turnside1: true
