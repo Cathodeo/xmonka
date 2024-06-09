@@ -15,11 +15,19 @@ independent games taking place simultaneously with a degree of fault tolerance.
 The rules of the card game are:
 
 -The objective is defeating a number of monster cards from the opposite team
+
 -Cards might be on the deck, hand, bench or in battle.
+
 -Monster cards have a finite number of healthpoints that will be taken with foe attacks.
+
 -Monsters have elements that increase or decrease damage received.
+
 -Three types of card: Monster, weapon and effect.
+
 -One monster may be in battle at every time
+
 -A monster begins with a base 'attack'
+
 -Weapons add a secondary attack. Weapon and Monster element compatibility is needed.
+
 -Effect cards function as single use moves, or manipulate the hand/deck/bench
