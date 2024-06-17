@@ -1,5 +1,7 @@
 defmodule Xmonka.Hand do
 
+    require Xmonka.Deck
+
     def start_link() do
       Agent.start_link(fn -> [] end)
     end

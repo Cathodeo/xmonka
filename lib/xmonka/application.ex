@@ -9,7 +9,6 @@ defmodule Xmonka.Application do
         Xmonka.Repo
       
       ]
-
       opts = [strategy: :one_for_one, name: Xmonka.Supervisor]
       Supervisor.start_link(children, opts)
     end

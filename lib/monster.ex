@@ -1,26 +1,27 @@
 defmodule Xmonka.Monster do
  
-  defstruct hand: false,
-  cardid: 0,
-   bench: false,
-    ingame: false,
-     alive: true,
-        hitpoints_now: 6,
-          equip: false,
-            equip_id: 0,
-            status: :none
+  defstruct [:deck_cardid,
+  :hand,
+   :bench,
+    :ingame,
+     :alive,
+      :hitpoints_now,
+       :equip,
+        :equip_id,
+         :status]
+
 
  
   #Initializes monster whenever a card has been pulled from the hand or the bench 
-  #Starts an agent        
-  def init_monster() do
+  #Starts an agent that contains the monster state and populates the monster specific values with the values that match the card ID        
+  def init_monster(deck_cardid) do
     Agent.start_link(fn -> %Xmonka.Monster{} end)
   end
 
 
 
 
-  #Functions that retrieve state information 
+  #Functions that retrieve state information that might be used by other state altering functions
 
   def inhand?(monster) do
     Agent.get(monster, fn state -> state.hand end)
@@ -41,6 +42,8 @@ defmodule Xmonka.Monster do
         def isequip?(monster) do
           Agent.get(monster, fn state -> state.equip end)
           end
+
+          #Functions that alter state used by game logic
 
           def do_equip(monster, itemid) do
                 case isequip?(monster) do
