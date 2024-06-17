@@ -4,6 +4,9 @@ XChangable Monster Kards
 
 WIP project, started around 05/06/24
 
+Note: The dependencies are added to the mix.exs file, but not included on the repo.
+Kindly fetch them before compiling the mix project
+
 The purpose of this project is to implement an online Trading Cards
 game to learn how to implement a stateful web application using the
 BEAM virtual machine (Elixir), that support concurrent games taking place
