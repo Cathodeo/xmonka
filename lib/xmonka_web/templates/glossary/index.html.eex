@@ -1,0 +1,10 @@
+<h1>Monster Glossary</h1>
+
+<table>
+<%= for monster <- @monsters do %>
+<tr>
+<td><b><%=monster.name%></b> (<%= to_string(monster.id) %>)</td>
+<td><%= link "View", to: Routes.glossary_path(@conn, :show, Integer.to_string(monster.id)) %></td>
+</tr>
+<% end %>
+</table>

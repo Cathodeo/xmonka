@@ -6,5 +6,6 @@ do
     field :name, :string
     field :power, :integer
     field :element_id, :integer
+    field :description, :string
   end
 end

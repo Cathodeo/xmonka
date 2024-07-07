@@ -17,6 +17,9 @@ defmodule XmonkaWeb.Router do
   scope "/", XmonkaWeb do
     pipe_through :browser
 
+    get "/monsters", GlossaryController, :index, as: :glossary
+    get "/monsters:id", GlossaryController, :show, as: :glossary
+    get "/board", BoardController, :show
     get "/", PageController, :index
   end
 
