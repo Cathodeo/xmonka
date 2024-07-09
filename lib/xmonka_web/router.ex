@@ -19,8 +19,8 @@ defmodule XmonkaWeb.Router do
 
     get "/monsters", GlossaryController, :index, as: :glossary
     get "/monsters:id", GlossaryController, :show, as: :glossary
-    get "/board", BoardController, :show
     get "/", PageController, :index
+    live "/board", BoardLive
   end
 
   # Other scopes may use custom stacks.
