@@ -32,8 +32,8 @@ do
   def move_by_monster(id) do
     monster_table = Xmonka.Repo.get_by(Xmonka.Monster, id: id)
     move_id = Map.get(monster_table, :move_id)
-    move_table = Xmonka.Repo.get_by(Xmonka.Move, id: move_id)
-    Map.get(move_table, :id)
+    Xmonka.Repo.get_by(Xmonka.Move, id: move_id)
+
   end
 
   def max_healthpoints(id) do
@@ -58,5 +58,20 @@ do
     Map.get(element_table, :name)
   end
 
+  def get_species(cardtype)
+  do
+    types_table = Xmonka.Repo.get_by(Xmonka.Type, id: cardtype)
+    foreign_id = Map.get(types_table, :foreign_id)
+    monster_table = Xmonka.Repo.get_by(Xmonka.Monster, id: foreign_id)
+    Map.get(monster_table, :id)
+  end
+
+  def get_movename(species)
+  do
+    monster_table = Xmonka.Repo.get_by(Xmonka.Monster, id: species)
+    move_id = Map.get(monster_table, :move_id)
+    move_table = Xmonka.Repo.get_by(Xmonka.Move, id: move_id)
+    Map.get(move_table, :name)
+  end
 
 end

@@ -9,7 +9,7 @@
 </div>
 </section>
 <aside>
-<h2 align= "right">Element: <img style="height: 45px; width: 45px"src="/images/element<%=@monster.element_id%>.jpeg"></h2>
+<h2 align= "right">Element: <img style="height: 45px; width: 45px"src="/images/element<%=@monster.element_id%>.png"></h2>
 </aside>
 
 <footer>

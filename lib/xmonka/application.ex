@@ -15,9 +15,11 @@ defmodule Xmonka.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Xmonka.PubSub},
       # Start the Endpoint (http/https)
-      XmonkaWeb.Endpoint
+      XmonkaWeb.Endpoint,
       # Start a worker by calling: Xmonka.Worker.start_link(arg)
       # {Xmonka.Worker, arg}
+      Supervisor.child_spec({Xmonka.Player, :player_1}, id: :player_1),
+      Supervisor.child_spec({Xmonka.Player, :player_2}, id: :player_2)
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

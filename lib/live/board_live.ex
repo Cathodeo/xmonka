@@ -2,12 +2,12 @@ defmodule XmonkaWeb.BoardLive
 do
   use Phoenix.LiveView, layout: {XmonkaWeb.LayoutView, "live.html"}
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, dummy)}
+    {:ok, assign(socket, %{})}
   end
 
   @spec render(any()) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
-    ~H"""
+    ~L"""
       <div style="display:inline-block; width: 15%; background-color:teal;
       color:white; text-align:center;">
 
@@ -21,7 +21,7 @@ do
 
       <div style="display:inline-block; width: 30%; background-color:purple; color:white;
       text-align:center;">
-      <h3>Goostav <img style="height: 45px; width: 45px"src="/images/element3.jpeg"></h3>
+      <h3>Goostav <img style="height: 45px; width: 45px"src="/images/element3.png"></h3>
       </div>
 
 
@@ -46,7 +46,7 @@ do
 
       <div style="display:inline-block; width: 25% ;background-color:brown; color:white;
       text-align:center;">
-      <h4>Crimson Bovid  <img style="height: 45px; width: 45px"src="/images/element2.jpeg"></h4>
+      <h4>Crimson Bovid  <img style="height: 45px; width: 45px"src="/images/element2.png"></h4>
       </div>
 
 
