@@ -20,7 +20,6 @@ defmodule XmonkaWeb.Router do
     get "/monsters", GlossaryController, :index, as: :glossary
     get "/monsters:id", GlossaryController, :show, as: :glossary
     get "/", PageController, :index
-    live "/board", BoardLive
     live "/player", PlayerLive
     live "/guess", WrongLive
   end

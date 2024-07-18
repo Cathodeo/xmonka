@@ -20,7 +20,8 @@ defmodule Xmonka.Player do
   end
 
   def populate_deck(map, 0) do
-    map
+    final_map = Map.put(map, 0, "Player")
+    final_map
   end
 
   def eval_card(map, cardid) do

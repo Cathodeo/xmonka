@@ -1,21 +1,17 @@
 <header>
-<h2 align="left"><%= @monster.name %></h2>
-</h2> Healthpoints: <%=@monster.healthpoints%></h2>
+</h2> Healthpoints: <%= String.duplicate("●",@monster.healthpoints)%></h2>
 </header>
 
 <section>
 <div style="text-align: center;">
-<img style="border: 25px solid; height: 400px;"src="/images/monster<%=@monster.id%>.png">
+<img style="border: 25px solid; height: 200px;"src="/images/monster<%=@monster.id%>.png">
 </div>
 </section>
-<aside>
-<h2 align= "right">Element: <img style="height: 45px; width: 45px"src="/images/element<%=@monster.element_id%>.png"></h2>
-</aside>
+<h4 align= "center">Element: <img style="height: 35px; width: 35px"src="/images/element<%=@monster.element_id%>.png"></h4>
+
 
 <footer>
-<br>
 <h4 align="left"><b>Base move:  </b> <%=@move.name %></h4>
 <h4 align="left"><b>Power:  </b> <%=@move.power %></h4>
-<br>
 <h6 align="centre"><%=@move.description %></h6>
 </footer>
