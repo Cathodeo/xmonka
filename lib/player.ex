@@ -20,8 +20,7 @@ defmodule Xmonka.Player do
   end
 
   def populate_deck(map, 0) do
-    final_map = Map.put(map, 0, "Player")
-    final_map
+    map
   end
 
   def eval_card(map, cardid) do
@@ -63,16 +62,18 @@ defmodule Xmonka.Player do
     cards
     |> Enum.filter(fn {_key, card} -> card.card_location == location end)
     |> Enum.into(%{})
-    end
+  end
 
-    def filter_monster_content_by_location(cards, location) do
-      cards
-      |> Enum.filter(fn {_key, %Card{card_location: ^location, ismonster: :yes}} -> true
-                       {_key, _card} -> false
-                     end)
-      |> Enum.map(fn {key, %Card{monster_content: monster}} -> {key, monster} end)
-      |> Enum.into(%{})
-    end
+  def filter_monster_content_by_location(cards, location) do
+    cards
+    |> Enum.filter(fn
+      {_key, %Card{card_location: ^location, ismonster: :yes}} -> true
+      {_key, _card} -> false
+    end)
+    |> Enum.map(fn {key, %Card{monster_content: monster}} -> {key, monster} end)
+    |> Enum.into(%{})
+  end
+
   @impl true
   def init(_nil) do
     {:ok, populate_deck(%{}, @decksize)}
@@ -100,21 +101,58 @@ defmodule Xmonka.Player do
     {:noreply, new_state}
   end
 
-    def draw_cards(player, manycards) do
-        state = get_state(player)
+  def draw_cards(player, manycards) do
+    state = get_state(player)
 
-        {new_state, _drawn_cards} =
-          Enum.reduce_while(state, {state, 0}, fn
-            {key, %Card{card_location: :deck} = card}, {acc_state, drawn} when drawn < manycards ->
-              new_card = %{card | card_location: :hand}
-              new_state = Map.put(acc_state, key, new_card)
-              {:cont, {new_state, drawn + 1}}
-            {_key, _card}, acc ->
-              {:cont, acc}
-          end)
-        set_state(player, new_state)
+    {new_state, _drawn_cards} =
+      Enum.reduce_while(state, {state, 0}, fn
+        {key, %Card{card_location: :deck} = card}, {acc_state, drawn} when drawn < manycards ->
+          new_card = %{card | card_location: :hand}
+          new_state = Map.put(acc_state, key, new_card)
+          {:cont, {new_state, drawn + 1}}
+
+        {_key, _card}, acc ->
+          {:cont, acc}
+      end)
+
+    set_state(player, new_state)
+  end
+
+
+  def update_card_status_by_species(player, species) do
+    state = get_state(player)
+
+    new_state =
+      state
+      |> Enum.find(fn {_key, card} ->
+        card.ismonster == :yes and card.card_location == :hand and card.monster_content.species == species
+      end)
+      |> case do
+        nil -> state
+        {key, card} -> Map.put(state, key, %{card | card_location: :gamearea})
       end
 
+    set_state(player, new_state)
+  end
 
+
+
+  def get_card_with_status(player, status) do
+    state = get_state(player)
+
+    state
+    |> Enum.find(fn {_key, card} -> card.card_location == status end)
+    |> case do
+      nil -> {:error, "No card found with status #{inspect(status)}"}
+      {key, card} -> %{key => card}
+    end
+  end
+
+  def get_monster_gamearea(player)
+  do
+  gamearea_map = get_card_with_status(player, :gamearea)
+  gamearea_monster = Map.values(gamearea_map)
+  List.first(gamearea_monster)
+  end
 
 end
